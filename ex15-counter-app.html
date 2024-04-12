@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <!-- ex15: create counter button as a functional component using useState hook, 
+    such that a button is displayed and clicking on it, its label which is intiially
+    at 27, keeps incrementing-->
+
+    <div id = "root"> This should change</div>
+
+    <script type = "text/babel">
+        // need to access rootNode
+        let rootNode = ReactDOM.createRoot(root);
+
+        // state variable hook is used to re-render a component
+        let useState = React.useState; 
+        
+        // setting a functional comp
+        let MyFunComp = (props) => {
+
+            // state variable, component is re-rendered
+            // make sure to set a starting value at useState(), in this case it asks us to use 27
+            let [counter, setCounter] = useState(27); //counter = getter, setCounter = setter
+            
+            let clickHandler = () => { // so it can be used inside MyFunComp Class
+                console.log("hello!");
+                counter++; // incrementing counter now
+                setCounter(counter); // value is updated everytime it's clicked
+            }
+
+            
+
+            return (
+                <div>
+                    <h1> Click fun comp</h1>
+                    <p>count is {counter}</p> <br/>
+                    <button onClick = {clickHandler}> Fun Comp </button>
+                </div>
+            )
+        }
+        // essential to have the classes inside rootnode run
+        // for functional components, need to have vector parentheses
+        rootNode.render(<MyFunComp/>); 
+    </script>
+</body>
+</html>
